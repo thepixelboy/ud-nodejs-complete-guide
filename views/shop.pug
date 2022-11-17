@@ -4,7 +4,7 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title My Shop
+    title #{pageTitle}
     link(rel="stylesheet", href="/css/main.css")
     link(rel="stylesheet", href="/css/product.css")
   body
@@ -15,3 +15,21 @@ html(lang="en")
             a.active(href="/") Shop
           li.main-header__item
             a(href="/admin/add-product") Add Product
+
+    main
+      if prods.length > 0
+        .grid 
+          each product in prods
+            article.card.product-item
+              header.card__header
+                h1.product_title #{product.title}
+              div.card__image
+                img(src="https://cdn.newsapi.com.au/image/v1/8791f511b22d3b0abb8b52c575bff083?width=650", alt="Product image")
+              div.card__content
+                h2.product_price $20.99
+                p.product_description product description
+              .card__actions
+                button.btn Add to Cart
+      else
+        h1 No products found
+

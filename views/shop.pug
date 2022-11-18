@@ -17,9 +17,9 @@ html(lang="en")
             a(href="/admin/add-product") Add Product
 
     main
-      if prods.length > 0
+      if products.length > 0
         .grid 
-          each product in prods
+          each product in products
             article.card.product-item
               header.card__header
                 h1.product_title #{product.title}

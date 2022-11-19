@@ -1,28 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= pageTitle %></title>
-    <link rel="stylesheet" href="/css/main.css" />
+<%- include ('partials/header.ejs') %>
   </head>
   <body>
-    <header class="main-header">
-      <nav class="main-header__nav">
-        <ul class="main-header__item-list">
-          <li class="main-header__item"><a class="active" href="/">Shop</a></li>
-          <li class="main-header__item">
-            <a href="/admin/add-product">Add Product</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <%- include ('partials/navigation.ejs') %>
 
     <main>
       <% if (products.length > 0) { %>
         <div class="grid">
-          <% products.forEach((product) => { %>
+          <% products.forEach(product => { %>
             <article class="card product-item">
               <header class="card__header">
                 <h1 class="product_title"><%= product.title %></h1>
@@ -37,11 +21,11 @@
               <div class="card__actions">
                 <button class="btn">Add to Cart</button>
             </article>
-          <% }); %>
+          <% }) %>
         </div>
       <% } else { %>
         <h1>No products found</h1>
       <% } %>
     </main>
-  </body>
-</html>
+
+    <%- include ('partials/footer.ejs') %>

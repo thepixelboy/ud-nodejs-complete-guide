@@ -1,46 +1,23 @@
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{pageTitle}}</title>
-    <link rel="stylesheet" href="/css/main.css" />
-  </head>
-  <body>
-    <header class="main-header">
-      <nav class="main-header__nav">
-        <ul class="main-header__item-list">
-          <li class="main-header__item"><a class="active" href="/">Shop</a></li>
-          <li class="main-header__item">
-            <a href="/admin/add-product">Add Product</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
 
-    <main>
-      {{#if hasProducts }}
-      <div class="grid">
-        {{#each products }}
-          <article class="card product-item">
-            <header class="card__header">
-              <h1 class="product_title">{{ this.title }}</h1>
-            </header>
-            <div class="card_image">
-              <img src="https://creativebonito.com/wp-content/uploads/2018/07/Free-Book-Cover-Mockup.jpg" alt="Book title" />
-            </div>
-            <div class="card__content">
-              <h2 class="product_price">$19.99</h2>
-              <p class="product_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam quisquam voluptas quidem fugiat?</p>
-            </div>
-            <div class="card__actions">
-              <button class="btn">Add to Cart</button>
-          </article>
-        {{/each}}
-      </div>
-      {{else}}
-        <h1>No products found</h1>
-      {{/if}}
-    </main>
-  </body>
-</html>
+{{#if hasProducts }}
+  <div class="grid">
+    {{#each products }}
+      <article class="card product-item">
+        <header class="card__header">
+          <h1 class="product_title">{{ this.title }}</h1>
+        </header>
+        <div class="card_image">
+          <img src="https://img.freepik.com/premium-psd/book-cover-mockup-template_68185-415.jpg" alt="Book title" />
+        </div>
+        <div class="card__content">
+          <h2 class="product_price">$19.99</h2>
+          <p class="product_description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+        <div class="card__actions">
+          <button class="btn">Add to Cart</button>
+      </article>
+    {{/each}}
+  </div>
+{{else}}
+  <h1>No products found</h1>
+{{/if}}

@@ -1,0 +1,31 @@
+<%- include ('../partials/header.ejs') %>
+  </head>
+  <body>
+    <%- include ('../partials/navigation.ejs') %>
+
+    <main>
+      <% if (products.length > 0) { %>
+        <div class="grid">
+          <% products.forEach(product => { %>
+            <article class="card product-item">
+              <header class="card__header">
+                <h1 class="product_title"><%= product.title %></h1>
+              </header>
+              <div class="card_image">
+                <img src="https://img.freepik.com/premium-psd/book-cover-mockup-template_68185-415.jpg" alt="Book title" />
+              </div>
+              <div class="card__content">
+                <h2 class="product_price">$19.99</h2>
+                <p class="product_description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              </div>
+              <div class="card__actions">
+                <button class="btn">Add to Cart</button>
+            </article>
+          <% }) %>
+        </div>
+      <% } else { %>
+        <h1>No products found</h1>
+      <% } %>
+    </main>
+
+    <%- include ('../partials/footer.ejs') %>

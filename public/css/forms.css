@@ -9,7 +9,8 @@
 }
 
 .form-control label,
-.form-control input {
+.form-control input,
+.form-control textarea {
   display: block;
   width: 100%;
 }
@@ -18,7 +19,8 @@
   margin-bottom: 0.5rem;
 }
 
-.form-control input {
+.form-control input,
+.form-control textarea {
   border: 2px solid #6290c3;
   border-radius: 0.25rem;
   font: inherit;
@@ -27,7 +29,10 @@
 
 .form-control input:active,
 .form-control input:focus,
-.form-control input:hover {
+.form-control input:hover,
+.form-control textarea:active,
+.form-control textarea:focus,
+.form-control textarea:hover {
   border-color: #6290c3;
 }
 

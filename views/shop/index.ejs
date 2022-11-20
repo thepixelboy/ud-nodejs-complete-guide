@@ -1,4 +1,5 @@
 <%- include ('../partials/header.ejs') %>
+  <link rel="stylesheet" href="/css/product.css">
   </head>
   <body>
     <%- include ('../partials/navigation.ejs') %>
@@ -12,11 +13,11 @@
                 <h1 class="product_title"><%= product.title %></h1>
               </header>
               <div class="card_image">
-                <img src="https://img.freepik.com/premium-psd/book-cover-mockup-template_68185-415.jpg" alt="Book title" />
+                <img src="<%= product.imageUrl %>" alt="<%= product.title %>" />
               </div>
               <div class="card__content">
-                <h2 class="product_price">$19.99</h2>
-                <p class="product_description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <h2 class="product_price">$<%= product.price %></h2>
+                <p class="product_description"><%= product.description %></p>
               </div>
               <div class="card__actions">
                 <button class="btn">Add to Cart</button>

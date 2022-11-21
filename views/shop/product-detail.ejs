@@ -1,0 +1,16 @@
+<%- include ('../partials/header.ejs') %>
+  </head>
+  <body>
+    <%- include ('../partials/navigation.ejs') %>
+
+    <main class="centered">
+      <h1><%= product.title %></h1>
+      <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+      <h2><%= product.price %></h2>
+      <p><%= product.description %></p>
+      <form action="/cart" method="POST">
+        <input type="hidden" name="productId" value="<%= product._id %>">
+        <button type="submit" class="btn">Add to Cart</button>
+    </main>
+
+<%- include ('../partials/footer.ejs') %>

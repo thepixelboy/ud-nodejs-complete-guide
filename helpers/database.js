@@ -8,4 +8,4 @@ const pool = mariadb.createPool({
   database: process.env.DB_NAME,
 });
 
-module.exports = pool.promise();
+module.exports = pool;

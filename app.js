@@ -4,7 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const errorsController = require("./controllers/errors");
-const mongoConnect = require("./helpers/database");
+const { mongoConnect } = require("./helpers/database");
 
 const app = express();
 
@@ -31,7 +31,6 @@ app.use("/admin", adminRoutes);
 
 app.use(errorsController.get404);
 
-mongoConnect((client) => {
-  console.log(client);
+mongoConnect(() => {
   app.listen(3000);
 });

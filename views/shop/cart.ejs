@@ -8,17 +8,22 @@
       <% if (products.length > 0) { %>
         <h1>Shopping Cart</h1>
         <ul class="cart__item-list">
-                    <% products.forEach(p => { %>
-                        <li class="cart__item">
-                            <h1><%= p.title %></h1>
-                            <h2>Quantity: <%= p.cartItem.quantity %></h2>
-                            <form action="/cart-delete-item" method="POST">
-                                <input type="hidden" value="<%= p.id %>" name="productId">
-                                <button class="btn danger" type="submit">Delete</button>
-                            </form>
-                        </li>
-                    <% }) %>
-                </ul>
+          <% products.forEach(p => { %>
+              <li class="cart__item">
+                  <h1><%= p.title %></h1>
+                  <h2>Quantity: <%= p.cartItem.quantity %></h2>
+                  <form action="/cart-delete-item" method="POST">
+                      <input type="hidden" value="<%= p.id %>" name="productId">
+                      <button class="btn danger" type="submit">Delete</button>
+                  </form>
+              </li>
+          <% }) %>
+        </ul>
+        <div class="centered">
+          <form action="/create-order" method="post">
+            <button class="btn success" type="submit">Order</button>
+          </form>
+        </div>
       <% } else { %>
         <h1>There are no items in your cart.</h1>
       <% } %>

@@ -4,7 +4,26 @@
     <%- include ('../partials/navigation.ejs') %>
 
     <main>
-      <h1>Your Orders</h1>
+      <% if (orders.length <= 0) { %>
+        <h1>You have no orders.</h1>
+      <% } else { %>
+        <ul>
+          <% orders.forEach(order => { %>
+            <li>
+              <h1>Order #<%= order.id %></h1>
+              <h2>Items:</h2>
+              <ul>
+                <% order.products.forEach(product => { %>
+                  <li>
+                    <h3><%= product.title %></h3>
+                    <h4>Quantity: <%= product.orderItem.quantity %></h4>
+                  </li>
+                <% }) %>
+              </ul>
+            </li>
+          <% }) %>
+        </ul>
+      <% } %>
     </main>
 
 <%- include ('../partials/footer.ejs') %>

@@ -2,12 +2,14 @@ const path = require("path");
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
 const errorsController = require("./controllers/errors");
-const { mongoConnect } = require("./helpers/database");
 const User = require("./models/user");
 
 const app = express();
+
+require("dotenv").config();
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -32,6 +34,14 @@ app.use(shopRoutes);
 
 app.use(errorsController.get404);
 
-mongoConnect(() => {
-  app.listen(3000);
-});
+mongoose
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then((result) => {
+    app.listen(3000);
+  })
+  .catch((error) => {
+    console.log(error);
+  });

@@ -61,19 +61,6 @@ mongoose
     useUnifiedTopology: true,
   })
   .then((result) => {
-    User.findOne().then((user) => {
-      if (!user) {
-        const user = new User({
-          name: "Jane Doe",
-          email: "jane.doe@blindspot.com",
-          cart: {
-            items: [],
-          },
-        });
-        user.save();
-      }
-    });
-
     app.listen(3000);
   })
   .catch((error) => {

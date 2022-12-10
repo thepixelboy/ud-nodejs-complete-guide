@@ -6,6 +6,9 @@
     <%- include ('../partials/navigation.ejs') %>
 
     <main>
+      <% if (errorMessage) { %>
+      <div><%= errorMessage %></div>
+      <% } %>
       <form class="login-form" action="/login" method="post">
         <div class="form-control">
           <label for="email">E-Mail Address</label>

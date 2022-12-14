@@ -14,18 +14,11 @@
           <label for="email">E-Mail Address</label>
           <input type="email" id="email" name="email" />
         </div>
-        <div class="form-control">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" />
-        </div>
         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <button class="btn" type="submit">
-          Login
+          Reset Password
         </button>
       </form>
-      <div class="centered">
-        <a href="/reset">Forgot Password?</a>
-      </div>
     </main>
     
 <%- include ('../partials/footer.ejs') %>

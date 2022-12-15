@@ -155,6 +155,9 @@ exports.postReset = (req, res, next) => {
         return user.save();
       })
       .then((result) => {
+        if (!result) {
+          return;
+        }
         res.redirect("/");
         transporter.sendMail({
           to: req.body.email,

@@ -12,7 +12,13 @@
       <form class="login-form" action="/login" method="post" novalidate>
         <div class="form-control">
           <label for="email">E-Mail Address</label>
-          <input type="email" id="email" name="email" />
+          <input 
+            class="<%= validationErrors.find(error => error.param === 'email') ? 'invalid' : '' %>" 
+            type="email" 
+            id="email" 
+            name="email" 
+            value="<%= oldInput.email %>" 
+          />
         </div>
         <div class="form-control">
           <label for="password">Password</label>

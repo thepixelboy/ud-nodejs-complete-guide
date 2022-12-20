@@ -9,7 +9,11 @@ router.get("/signup", authController.getSignup);
 router.get("/reset", authController.getReset);
 router.get("/reset/:token", authController.getNewPassword);
 
-router.post("/login", authController.postLogin);
+router.post(
+  "/login",
+  check("email").isEmail().withMessage("Please enter a valid email"),
+  authController.postLogin
+);
 router.post("/logout", authController.postLogout);
 router.post(
   "/signup",
@@ -18,10 +22,6 @@ router.post(
       .isEmail()
       .withMessage("Please enter a valid email")
       .custom((value, { req }) => {
-        // if (value === "test@test.com") {
-        //   throw new Error("This email address is forbidden.");
-        // }
-        // return true;
         return User.findOne({ email: value }).then((userDoc) => {
           if (userDoc) {
             return Promise.reject(

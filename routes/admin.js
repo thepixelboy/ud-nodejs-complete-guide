@@ -24,7 +24,7 @@ router.post(
 router.post(
   "/edit-product",
   [
-    check("title").isAlphanumeric().isLength({ min: 3 }).trim(),
+    check("title").isString().isLength({ min: 3 }).trim(),
     body("imageUrl").isURL(),
     body("price").isFloat(),
     body("description").isLength({ min: 5, max: 400 }).trim(),

@@ -50,7 +50,7 @@ exports.postAddProduct = (req, res, next) => {
       console.log("Product Created");
       res.redirect("/admin/products");
     })
-    .catch((error) => console.log(error));
+    .catch((error) => res.redirect("/something-went-wrong"));
 };
 
 exports.getEditProduct = (req, res, next) => {

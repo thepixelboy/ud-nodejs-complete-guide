@@ -41,6 +41,12 @@ app.use(csrfProtection);
 app.use(flash());
 
 app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
+
+app.use((req, res, next) => {
   if (!req.session.user) {
     return next();
   }
@@ -55,14 +61,8 @@ app.use((req, res, next) => {
       next();
     })
     .catch((error) => {
-      throw new Error(error);
+      next(new Error(error));
     });
-});
-
-app.use((req, res, next) => {
-  res.locals.isAuthenticated = req.session.isLoggedIn;
-  res.locals.csrfToken = req.csrfToken();
-  next();
 });
 
 app.use("/admin", adminRoutes);
@@ -71,9 +71,13 @@ app.use(authRoutes);
 
 app.get("/something-went-wrong", errorsController.get500);
 app.use(errorsController.get404);
+
 app.use((error, req, res, next) => {
-  // res.status(error.httpStatusCode).render(...);
-  res.redirect("/something-went-wrong");
+  res.status(500).render("500", {
+    pageTitle: "Something went wrong!",
+    path: "/something-went-wrong",
+    isAuthenticated: req.session.isLoggedIn,
+  });
 });
 
 mongoose

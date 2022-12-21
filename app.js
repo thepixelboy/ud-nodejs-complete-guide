@@ -71,6 +71,10 @@ app.use(authRoutes);
 
 app.get("/something-went-wrong", errorsController.get500);
 app.use(errorsController.get404);
+app.use((error, req, res, next) => {
+  // res.status(error.httpStatusCode).render(...);
+  res.redirect("/something-went-wrong");
+});
 
 mongoose
   .connect(process.env.MONGODB_URI, {

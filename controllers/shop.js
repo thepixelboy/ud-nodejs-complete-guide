@@ -154,9 +154,11 @@ exports.getInvoice = (req, res, next) => {
       if (!order) {
         return next(new Error("No order found."));
       }
+
       if (order.user.userId.toString() !== req.user._id.toString()) {
         return next(new Error("Unauthorized"));
       }
+
       const invoiceName = "invoice-" + orderId + ".pdf";
       const invoicePath = path.join("data", "invoices", invoiceName);
       const pdfDoc = new PDFDocument();
@@ -166,9 +168,38 @@ exports.getInvoice = (req, res, next) => {
         "Content-Disposition",
         'inline; filename="' + invoiceName + '"'
       );
+
       pdfDoc.pipe(fs.createWriteStream(invoicePath));
       pdfDoc.pipe(res);
-      pdfDoc.text("Invoice");
+
+      pdfDoc.fontSize(26).text("Invoice", {
+        underline: true,
+      });
+
+      pdfDoc
+        .fontSize(14)
+        .text("--------------------------------------------------");
+
+      let totalPrice = 0;
+      order.products.forEach((prod) => {
+        totalPrice += prod.quantity * prod.product.price;
+        pdfDoc
+          .fontSize(14)
+          .text(
+            prod.product.title +
+              " - " +
+              prod.quantity +
+              " x " +
+              "$" +
+              prod.product.price
+          );
+      });
+
+      pdfDoc
+        .fontSize(14)
+        .text("--------------------------------------------------");
+      pdfDoc.fontSize(20).text("Total Price: $" + totalPrice);
+
       pdfDoc.end();
     })
     .catch((error) => next(error));

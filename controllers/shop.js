@@ -41,27 +41,29 @@ exports.getProduct = (req, res, next) => {
 };
 
 exports.getIndex = (req, res, next) => {
-  const page = req.query.page;
+  const page = +req.query.page || 1;
   let totalItems;
 
   Product.find()
-    .countDocuments()
-    .then((numProducts) => {
-      const totalItems = numProducts;
-      return Product.find()
-        .skip((page - 1) * ITEMS_PER_PAGE)
-        .limit(ITEMS_PER_PAGE)
-        .then((products) => {
+    .skip((page - 1) * ITEMS_PER_PAGE)
+    .limit(ITEMS_PER_PAGE)
+    .then((products) => {
+      Product.countDocuments()
+        .then((totalProductsCount) => {
+          const pagesCount = Math.ceil(totalProductsCount / ITEMS_PER_PAGE);
+          return {
+            totalPages: pagesCount,
+            currPage: page,
+            hasPrev: page > 1,
+            hasNext: page < pagesCount,
+          };
+        })
+        .then((pagingData) => {
           res.render("shop/index", {
             products: products,
-            pageTitle: "Shop",
-            path: "/",
-            totalProducts: totalItems,
-            hasNextPage: ITEMS_PER_PAGE * page < totalItems,
-            hasPreviousPage: page > 1,
-            nextPage: page + 1,
-            previousPage: page - 1,
-            lastPage: Math.ceil(totalItems / ITEMS_PER_PAGE),
+            pageTitle: "All Products",
+            path: "/shop",
+            pagination: pagingData,
           });
         });
     })

@@ -1,7 +1,7 @@
   <%- include ('../partials/header.ejs') %>
-  <link rel="stylesheet" href="/css/product.css">
-  </head>
-  <body>
+    <link rel="stylesheet" href="/css/product.css">
+    </head>
+    <body>
     <%- include ('../partials/navigation.ejs') %>
 
     <main>
@@ -12,7 +12,7 @@
               <header class="card__header">
                 <h1 class="product_title"><%= product.title %></h1>
               </header>
-              <div class="card_image">
+              <div class="card__image">
                 <img src="/<%= product.imageUrl %>" alt="<%= product.title %>" />
               </div>
               <div class="card__content">

@@ -26,6 +26,7 @@
             </article>
           <% }) %>
         </div>
+        <%- include ('../partials/pagination.ejs', {pagination: pagination}) %>
       <% } else { %>
         <h1>No products found</h1>
       <% } %>

@@ -131,3 +131,5 @@ dist
 
 # Custom
 images/
+server.cert
+server.key
